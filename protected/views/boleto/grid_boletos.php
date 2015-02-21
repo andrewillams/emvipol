@@ -1,6 +1,7 @@
 <div class="row">
    <div class="col-sm-12">
       <table id="grid_boletos" class="table table-striped table-bordered table-hover table-full-width dataTable">
+<!--      <table id="grid_boletos" class="table dataTable">-->
          <thead>
             <tr>
                <th>Emissão</th>

@@ -9,7 +9,7 @@
 return array(
 
 	'language'=>'pt_br',
-	'defaultController' => 'boleto/index',
+	'defaultController' => 'site',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'EMVIPOL',
 
@@ -20,7 +20,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-//		'application.extensions.phpass*',
+		'application.extensions.phpass*',
 	),
 
 	/*
