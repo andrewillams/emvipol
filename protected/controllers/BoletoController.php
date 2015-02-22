@@ -39,7 +39,11 @@ class BoletoController extends Controller {
         $cs->registerScriptFile($baseUrl . '/js/jquery.dataTables.js', CClientScript::POS_END);
         $cs->registerScriptFile($baseUrl . '/js/dataTables.fnReloadAjax.js', CClientScript::POS_END);
         
-        $this->render('grid_boletos');
+        $boleto = new Boleto;
+        
+        $retorno = $boleto->listarTitulos();
+        
+        $this->render('grid_boletos',array('dados' => $retorno));
         
     }
     
@@ -50,7 +54,9 @@ class BoletoController extends Controller {
         
         $retorno = $boleto->listarTitulos();
         
-        echo json_encode( $retorno );
+        //echo json_encode( $retorno );
+        
+        return $retorno;
         //var_dump($retorno);
     }
     
