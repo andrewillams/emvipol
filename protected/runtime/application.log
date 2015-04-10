@@ -2361,3 +2361,162 @@ REQUEST_URI=/boleto/imprimir
 in /var/www/emvipol/protected/views/boleto/imprimir.php (3)
 in /var/www/emvipol/protected/views/boleto/imprimir.php (3)
 in /var/www/emvipol/protected/controllers/BoletoController.php (110)
+2015/04/08 21:29:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2015/04/08 21:30:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'emvipol'' in /var/www/yii/framework/db/CDbConnection.php:399
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(347): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(394): CDbConnection->init()
+#3 /var/www/yii/framework/base/CApplication.php(458): CModule->getComponent('db')
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(637): CApplication->getDb()
+#5 /var/www/yii/framework/db/ar/CActiveRecord.php(2384): CActiveRecord->getDbConnection()
+#6 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Boleto))
+#7 /var/www/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 /var/www/emvipol/protected/controllers/BoletoController.php(40): CActiveRecord->__construct()
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#20 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#21 /var/www/emvipol/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:33:33 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'emvipol.Boleto' doesn't exist. A declaração SQL executada foi: SHOW FULL COLUMNS FROM `Boleto`.
+in /var/www/emvipol/protected/controllers/BoletoController.php (40)
+in /var/www/emvipol/index.php (13)
+2015/04/08 21:33:33 [error] [exception.CDbException] exception 'CDbException' with message 'A tabela "Boleto" da classe de active record "Boleto", não pôde ser encontrada no banco de dados.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2385
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Boleto))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 /var/www/emvipol/protected/controllers/BoletoController.php(40): CActiveRecord->__construct()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#14 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#15 /var/www/emvipol/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:34:57 [error] [exception.PDOException] exception 'PDOException' with message 'could not find driver' in /var/www/emvipol/protected/models/Boleto.php:10
+Stack trace:
+#0 /var/www/emvipol/protected/models/Boleto.php(10): PDO->__construct('dblib:host=rn.e...', 'acesso', '@ccess')
+#1 /var/www/emvipol/protected/controllers/BoletoController.php(42): Boleto->listarTitulos()
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#13 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /var/www/emvipol/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:37:48 [error] [exception.PDOException] exception 'PDOException' with message 'SQLSTATE[01002] Adaptive Server connection failed (severity 9)' in /var/www/emvipol/protected/models/Boleto.php:10
+Stack trace:
+#0 /var/www/emvipol/protected/models/Boleto.php(10): PDO->__construct('dblib:host=rn.e...', 'acesso', '@ccess')
+#1 /var/www/emvipol/protected/controllers/BoletoController.php(42): Boleto->listarTitulos()
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#13 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /var/www/emvipol/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:37:50 [error] [exception.PDOException] exception 'PDOException' with message 'SQLSTATE[01002] Adaptive Server connection failed (severity 9)' in /var/www/emvipol/protected/models/Boleto.php:10
+Stack trace:
+#0 /var/www/emvipol/protected/models/Boleto.php(10): PDO->__construct('dblib:host=rn.e...', 'acesso', '@ccess')
+#1 /var/www/emvipol/protected/controllers/BoletoController.php(42): Boleto->listarTitulos()
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#13 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /var/www/emvipol/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:37:52 [error] [exception.PDOException] exception 'PDOException' with message 'SQLSTATE[01002] Adaptive Server connection failed (severity 9)' in /var/www/emvipol/protected/models/Boleto.php:10
+Stack trace:
+#0 /var/www/emvipol/protected/models/Boleto.php(10): PDO->__construct('dblib:host=rn.e...', 'acesso', '@ccess')
+#1 /var/www/emvipol/protected/controllers/BoletoController.php(42): Boleto->listarTitulos()
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#13 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /var/www/emvipol/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/boleto/
+---
+2015/04/08 21:41:30 [error] [exception.PDOException] exception 'PDOException' with message 'SQLSTATE[01002] Adaptive Server connection failed (severity 9)' in /var/www/emvipol/protected/models/Boleto.php:10
+Stack trace:
+#0 /var/www/emvipol/protected/models/Boleto.php(10): PDO->__construct('dblib:host=187....', 'acesso', '@ccess')
+#1 /var/www/emvipol/protected/controllers/BoletoController.php(42): Boleto->listarTitulos()
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto')
+#13 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /var/www/emvipol/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/boleto/
+---

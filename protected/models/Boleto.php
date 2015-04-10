@@ -7,7 +7,7 @@ class Boleto extends CActiveRecord {
         
 
         # MS SQL Server and Sybase with PDO_DBLIB
-        $db = new PDO("dblib:host=rn.emvipol.com.br:1435;dbname=TREINA", "acesso", "@ccess");
+        $db = new PDO("dblib:host=187.60.78.18:1435;dbname=TREINA", "acesso", "@ccess");
 
         //          $db = new PDO("dblib:host=10.0.254.8:1433;dbname=GMM;charset=utf8", "sa", "Grup0M@r3SA");
 
