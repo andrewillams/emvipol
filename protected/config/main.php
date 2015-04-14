@@ -9,7 +9,7 @@
 return array(
 
 	'language'=>'pt_br',
-	'defaultController' => 'site',
+	'defaultController' => 'site/login/',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'EMVIPOL',
 
