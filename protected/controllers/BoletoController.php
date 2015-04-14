@@ -46,11 +46,11 @@ class BoletoController extends Controller {
 
     public function actionImprimir() {
 
-        $layout = 'empty_template';
+        $this->layout = 'empty_template';
 
-// DADOS DO BOLETO PARA O SEU CLIENTE
-        $dias_de_prazo_para_pagamento = 5;
-        $taxa_boleto = 2.95;
+        // DADOS DO BOLETO PARA O SEU CLIENTE
+        $dias_de_prazo_para_pagamento       = 5;
+        $taxa_boleto                        = 2.95;
         $data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
         $valor_cobrado = "2950,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
         $valor_cobrado = str_replace(",", ".", $valor_cobrado);
@@ -62,12 +62,13 @@ class BoletoController extends Controller {
         $dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
         $dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
         $dadosboleto["valor_boleto"] = $valor_boleto;  // Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
-// DADOS DO SEU CLIENTE
+
+        // DADOS DO SEU CLIENTE
         $dadosboleto["sacado"] = "Nome do seu Cliente";
         $dadosboleto["endereco1"] = "Endereço do seu Cliente";
         $dadosboleto["endereco2"] = "Cidade - Estado -  CEP: 00000-000";
 
-// INFORMACOES PARA O CLIENTE
+        // INFORMACOES PARA O CLIENTE
         $dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Nonononono";
         $dadosboleto["demonstrativo2"] = "Mensalidade referente a nonon nonooon nononon<br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
         $dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
@@ -76,7 +77,7 @@ class BoletoController extends Controller {
         $dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br";
         $dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br";
 
-// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
+        // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
         $dadosboleto["quantidade"] = "";
         $dadosboleto["valor_unitario"] = "";
         $dadosboleto["aceite"] = "";
@@ -84,14 +85,14 @@ class BoletoController extends Controller {
         $dadosboleto["especie_doc"] = "";
 
 
-// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
-// DADOS DA SUA CONTA - ITAÚ
+        // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
+        // DADOS DA SUA CONTA - ITAÚ
         $dadosboleto["agencia"] = "1565"; // Num da agencia, sem digito
         $dadosboleto["conta"] = "13877"; // Num da conta, sem digito
         $dadosboleto["conta_dv"] = "4";  // Digito do Num da conta
-// DADOS PERSONALIZADOS - ITAÚ
+        // DADOS PERSONALIZADOS - ITAÚ
         $dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
-// SEUS DADOS
+        // SEUS DADOS
         $dadosboleto["identificacao"] = "BoletoPhp - Código Aberto de Sistema de Boletos";
         $dadosboleto["cpf_cnpj"] = "";
         $dadosboleto["endereco"] = "Coloque o endereço da sua empresa aqui";
@@ -108,8 +109,6 @@ class BoletoController extends Controller {
                     'dadosboleto' => $dadosboleto,
                 )
             );
-        
-        
     }
 
     public function actionListar() {

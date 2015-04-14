@@ -1,11 +1,11 @@
-<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
-<?php
-    include("includes/funcoes_itau.php"); 
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<?php include("includes/funcoes_itau.php");  ?>
+
 <HTML>
-    <HEAD>
-        <TITLE><?php echo $dadosboleto["identificacao"]; ?></TITLE>
-        <META http-equiv=Content-Type content=text/html charset=ISO-8859-1>
+    <head>
+        <title>Emvipol | Boleto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="Generator" content="Projeto BoletoPHP - www.boletophp.com.br - Licença GPL" />
         <style type=text/css>
             <!--.cp {  font: bold 10px Arial; color: black}
@@ -19,64 +19,52 @@
     </head>
 
     <BODY text=#000000 bgColor=#ffffff topMargin=0 rightMargin=0>
-        <table width=666 cellspacing=0 cellpadding=0 border=0>
-            <tr>
-                <td valign=top class=cp>
-                    <DIV ALIGN="CENTER">Instruções
-                        de Impressão
-                    </DIV>
-                </TD>
-            </TR>
-            <TR>
-                <TD valign=top class=cp>
-                    <DIV ALIGN="left">
-                        <p>
-                        <li>Imprima em impressora jato de tinta (ink jet) ou laser em qualidade normal ou alta (Não use modo econômico).<br>
-                        <li>Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens mínimas à esquerda e à direita do formulário.<br>
-                        <li>Corte na linha indicada. Não rasure, risque, fure ou dobre a região onde se encontra o código de barras.<br>
-                        <li>Caso não apareça o código de barras no final, clique em F5 para atualizar esta tela.
-                        <li>Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:<br><br>
-                            <span class="ld2">
-                                &nbsp;&nbsp;&nbsp;&nbsp;Linha Digitável: &nbsp;<?php echo $dadosboleto["linha_digitavel"] ?><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Valor: &nbsp;&nbsp;R$ <?php echo $dadosboleto["valor_boleto"] ?><br>
-                            </span>
-                    </DIV>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <table cellspacing=0 cellpadding=0 width=666 border=0>
-            <TBODY>
-                <TR>
-                    <TD class=ct width=666>
-                        <img height=1 src="/images/6.png" width=665 border=0>
+        <!--
+            <table width=666 cellspacing=0 cellpadding=0 border=0>
+                <tr>
+                    <td valign=top class=cp>
+                        <DIV ALIGN="CENTER">Instruções
+                            de Impressão
+                        </DIV>
                     </TD>
                 </TR>
                 <TR>
-                    <TD class=ct width=666>
-                        <div align=right>
-                            <b class=cp>Recibo do Sacado</b>
-                        </div>
-                    </TD>
+                    <TD valign=top class=cp>
+                        <DIV ALIGN="left">
+                            <p>
+                            <li>Imprima em impressora jato de tinta (ink jet) ou laser em qualidade normal ou alta (Não use modo econômico).<br>
+                            <li>Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens mínimas à esquerda e à direita do formulário.<br>
+                            <li>Corte na linha indicada. Não rasure, risque, fure ou dobre a região onde se encontra o código de barras.<br>
+                            <li>Caso não apareça o código de barras no final, clique em F5 para atualizar esta tela.
+                            <li>Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:<br><br>
+                                <span class="ld2">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;Linha Digitável: &nbsp;<?php //echo $dadosboleto["linha_digitavel"] ?><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;Valor: &nbsp;&nbsp;R$ <?php //echo $dadosboleto["valor_boleto"] ?><br>
+                                </span>
+                        </DIV>
+                    </td>
                 </tr>
-            </tbody>
-        </table>
+            </table>
+            <table cellspacing=0 cellpadding=0 width=666 border=0>
+                <TBODY>
+                    <TR>
+                        <TD class=ct width=666>
+                            <img height=1 src="/images/6.png" width=665 border=0>
+                        </TD>
+                    </TR>
+                    <TR>
+                        <TD class=ct width=666>
+                            <div align=right>
+                                <b class=cp>Recibo do Sacado</b>
+                            </div>
+                        </TD>
+                    </tr>
+                </tbody>
+            </table>
+        -->
         <table width=666 cellspacing=5 cellpadding=0 border=0>
             <tr>
                 <td width=41></TD>
-            </tr>
-        </table>
-        <table width=666 cellspacing=5 cellpadding=0 border=0 align=Default>
-            <tr>
-                <td width=41>
-                    <IMG SRC=""/images/logo_empresa.png">
-                </td>
-                <td class=ti width=455>
-                    <?php echo $dadosboleto["identificacao"]; ?> <?php echo isset($dadosboleto["cpf_cnpj"]) ? "<br>" . $dadosboleto["cpf_cnpj"] : '' ?><br>
-                    <?php echo $dadosboleto["endereco"]; ?><br>
-                    <?php echo $dadosboleto["cidade_uf"]; ?><br>
-                </td>
-                <td align=RIGHT width=150 class=ti>&nbsp;</td>
             </tr>
         </table>
         <BR>
@@ -412,16 +400,16 @@
             <tbody>
                 <tr>
                     <td class=ct  width=7 height=12></td>
-                    <td class=ct  width=564 >Demonstrativo</td>
+                    <!--<td class=ct  width=564 >Demonstrativo</td>-->
                     <td class=ct  width=7 height=12></td><td class=ct  width=88 >Autenticação mecânica</td>
                 </tr>
                 <tr>
                     <td  width=7 ></td>
                     <td class=cp width=564 >
                         <span class="campo">
-                            <?php echo $dadosboleto["demonstrativo1"] ?><br>
-                            <?php echo $dadosboleto["demonstrativo2"] ?><br>
-                            <?php echo $dadosboleto["demonstrativo3"] ?><br>
+                            <?php //echo $dadosboleto["demonstrativo1"] ?><br>
+                            <?php //echo $dadosboleto["demonstrativo2"] ?><br>
+                            <?php //echo $dadosboleto["demonstrativo3"] ?><br>
                         </span>
                     </td>
                     <td  width=7 ></td>
@@ -452,7 +440,7 @@
                 </tr>
                 <tr>
                     <td class=ct width=666>
-                        <img height=1 src="/images/6.png" width=665 border=0>
+                        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                     </td>
                 </tr>
             </tbody>
@@ -461,8 +449,8 @@
         <table cellspacing=0 cellpadding=0 width=666 border=0>
             <tr>
                 <td class=cp width=150>
-                    <span class="campo">
-                        <IMG src=""/images/logoitau.jpg" width="150" height="40" border=0>
+                    <span class="campo">                        
+                        <IMG src="/images/logoitau.jpg" width="150" height="40" border=0>
                     </span>
                 </td>
                 <td width=3 valign=bottom><img height=22 src="/images/3.png" width=2 border=0></td>
