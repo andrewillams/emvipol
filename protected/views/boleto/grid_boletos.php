@@ -30,6 +30,12 @@
                                         <input type="hidden" 
                                                name="regSE1" 
                                                value="<?php echo $dados[$cnt]['reg'] ?>">
+
+                                        <input type="hidden" name="nomecliente" value="<?= $dados[$cnt]['nomecliente']?>">
+                                        <input type="hidden" name="endcliente" value="<?= $dados[$cnt]['endcliente']?>">
+                                        <input type="hidden" name="cepcliente" value="<?= $dados[$cnt]['cepcliente']?>">
+                                        <input type="hidden" name="cidcliente" value="<?= $dados[$cnt]['cidcliente']?>">
+                                        <input type="hidden" name="estcliente" value="<?= $dados[$cnt]['estcliente']?>">
                                     </form>
                                     
                                 <?php } ?>

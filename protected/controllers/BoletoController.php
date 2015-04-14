@@ -64,18 +64,18 @@ class BoletoController extends Controller {
         $dadosboleto["valor_boleto"] = $valor_boleto;  // Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 
         // DADOS DO SEU CLIENTE
-        $dadosboleto["sacado"] = "Nome do seu Cliente";
-        $dadosboleto["endereco1"] = "Endereço do seu Cliente";
-        $dadosboleto["endereco2"] = "Cidade - Estado -  CEP: 00000-000";
+        $dadosboleto["sacado"] = $_POST['nomecliente'];
+        $dadosboleto["endereco1"] = $_POST['endcliente'];
+        $dadosboleto["endereco2"] = $_POST['cidcliente']." - ".$_POST['estcliente']." - CEP: " .$_POST['cepcliente'];
 
         // INFORMACOES PARA O CLIENTE
-        $dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Nonononono";
-        $dadosboleto["demonstrativo2"] = "Mensalidade referente a nonon nonooon nononon<br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
-        $dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
-        $dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
-        $dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-        $dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br";
-        $dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br";
+        //$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Nonononono";
+        //$dadosboleto["demonstrativo2"] = "Mensalidade referente a nonon nonooon nononon<br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
+        //$dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
+        $dadosboleto["instrucoes1"] = "- Instruções a definir";
+        $dadosboleto["instrucoes2"] = "- Instruções a definir";
+        $dadosboleto["instrucoes3"] = "- Instruções a definir";
+        $dadosboleto["instrucoes4"] = "&nbsp; Instruções a definir";
 
         // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
         $dadosboleto["quantidade"] = "";
