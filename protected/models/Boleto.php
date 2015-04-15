@@ -30,9 +30,13 @@ class Boleto extends CActiveRecord {
         $retorno = $sth->fetchAll();
         
         foreach ($retorno as $r) {
+            
+            $vencimento = date("d/m/Y"  , strtotime(    $r['VENCIMENTO' ]   )   );
+            $emissao    = date("d/m/Y"  , strtotime(    $r['EMISSAO'    ]   )   );
+            
             $retJSON[]          = [
-                'emissao'       => $r['EMISSAO'],
-                'vencimento'    => $r['VENCIMENTO'],
+                'emissao'       => $emissao,
+                'vencimento'    => $vencimento,
                 'valor'         => $r['VALOR'],
                 'saldo'         => $r['SALDO'],
                 'reg'           => $r['REG'],
