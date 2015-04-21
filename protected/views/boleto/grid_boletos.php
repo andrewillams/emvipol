@@ -15,9 +15,9 @@
                 <tbody>
                     <?php for ($cnt = 0; $cnt < sizeof($dados); $cnt++) { ?>
                         <tr>
-                            <td><?php echo $dados[$cnt]['emissao']?></td>
-                            <td><?php echo $dados[$cnt]['vencimento']?></td>
-                            <td><?php echo $dados[$cnt]['valor']?></td>
+                            <td><?php echo substr($dados[$cnt]['emissao'], 6, 2) . '/'. substr($dados[$cnt]['emissao'], 4, 2) . '/' . substr($dados[$cnt]['emissao'], 0, 4); ?></td>
+                            <td><?php echo substr($dados[$cnt]['vencimento'], 6, 2) . '/'. substr($dados[$cnt]['vencimento'], 4, 2) . '/' . substr($dados[$cnt]['vencimento'], 0, 4); ?></td>
+                            <td><?php echo number_format($dados[$cnt]['valor'], 2, ',','.')?></td>
                             <td class="no-orderable"><?php echo $dados[$cnt]['chave']?></td>
                             
                             <td>

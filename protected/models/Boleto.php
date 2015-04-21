@@ -4,10 +4,15 @@ class Boleto extends CActiveRecord {
 
     public function listarTitulos() {
         
-        
+        $CGC    = NULL;
 
         # MS SQL Server and Sybase with PDO_DBLIB
-        $db = new PDO("dblib:host=187.60.78.18:1435;dbname=TREINA", "acesso", "@ccess");
+        $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=TREINA", "acesso", "@ccess");
+
+        if( isset( $_POST['CGC'] ) )
+        {
+            $CGC    = $_POST['CGC'];
+        }
 
         //          $db = new PDO("dblib:host=10.0.254.8:1433;dbname=GMM;charset=utf8", "sa", "Grup0M@r3SA");
 
@@ -18,6 +23,12 @@ class Boleto extends CActiveRecord {
         $query .= "FROM SE1010 AS SE1 ";
         $query .= "INNER JOIN SA1010 AS SA1 ON SA1.D_E_L_E_T_ = '' AND E1_CLIENTE = A1_COD AND E1_LOJA = A1_LOJA ";
         $query .= "WHERE SE1.D_E_L_E_T_ <> '*' ";
+
+        if( $CGC != NULL )
+        {
+            $query .= " AND A1_CGC = " . $CGC;
+        }
+
         $query .= "AND SE1.E1_TIPO NOT LIKE '%-%' ";
         $query .= "ORDER BY SE1.R_E_C_N_O_ DESC ";
 
@@ -54,5 +65,4 @@ class Boleto extends CActiveRecord {
         return $retJSON;
         
     }
-
 }

@@ -1,10 +1,16 @@
 $(document).ready(function () {
 
     var boletosTable = $('#grid_boletos').DataTable({
+
+
         "dom": 'T<"clear">lfrtip',
         "retrieve": true,
         "oLanguage": {
-            "sProcessing": "<img src='/images/ajax-loader.gif'>"
+            "sProcessing": "<img src='/images/ajax-loader.gif'>",
+            "oPaginate": {
+                "sPrevious": "Anterior",
+                "sNext"    : "Próximo"
+            }
         },
     });
 
