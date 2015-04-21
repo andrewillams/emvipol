@@ -61,10 +61,11 @@ class Boleto extends CActiveRecord {
             ];
         }
 
-/*        return [
+        /*return [
             "recordsTotal" => count($retorno),
             "recordsFiltered" => count($retorno),
-            "data" => $retJSON];*/
+            "data" => $retJSON
+        ];*/
         
         return $retJSON;
         
