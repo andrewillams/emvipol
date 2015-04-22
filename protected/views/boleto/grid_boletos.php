@@ -15,8 +15,8 @@
                 <tbody>
                     <?php for ($cnt = 0; $cnt < sizeof($dados); $cnt++) { ?>
                         <tr>
-                            <td><?php echo substr($dados[$cnt]['emissao'], 6, 2) . '/'. substr($dados[$cnt]['emissao'], 4, 2) . '/' . substr($dados[$cnt]['emissao'], 0, 4); ?></td>
-                            <td><?php echo substr($dados[$cnt]['vencimento'], 6, 2) . '/'. substr($dados[$cnt]['vencimento'], 4, 2) . '/' . substr($dados[$cnt]['vencimento'], 0, 4); ?></td>
+                            <td><?php echo $dados[$cnt]['emissao']; ?></td>
+                            <td><?php echo $dados[$cnt]['vencimento']; ?></td>
                             <td><?php echo number_format($dados[$cnt]['valor'], 2, ',','.')?></td>
                             <td class="no-orderable"><?php echo $dados[$cnt]['chave']?></td>
                             
@@ -36,6 +36,7 @@
                                         <input type="hidden" name="cepcliente" value="<?= $dados[$cnt]['cepcliente']?>">
                                         <input type="hidden" name="cidcliente" value="<?= $dados[$cnt]['cidcliente']?>">
                                         <input type="hidden" name="estcliente" value="<?= $dados[$cnt]['estcliente']?>">
+                                        <input type="hidden" name="nossonumero" value="<?= $dados[$cnt]['nossonumero']?>">
                                     </form>
                                     
                                 <?php } ?>
