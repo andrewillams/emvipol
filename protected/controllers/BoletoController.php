@@ -56,7 +56,7 @@ class BoletoController extends Controller {
         $valor_cobrado = str_replace(",", ".", $valor_cobrado);
         $valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
 
-        $dadosboleto["nosso_numero"] = '12345678';  // Nosso numero - REGRA: Máximo de 8 caracteres!
+        $dadosboleto["nosso_numero"] = $_POST['nossonumero'];  // Nosso numero - REGRA: Máximo de 8 caracteres!
         $dadosboleto["numero_documento"] = '0123'; // Num do pedido ou nosso numero
         $dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
         $dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto

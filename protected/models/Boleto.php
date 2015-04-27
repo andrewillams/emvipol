@@ -20,7 +20,7 @@ class Boleto extends CActiveRecord {
         $query .= "E1_EMISSAO AS EMISSAO, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, E1_NOMCLI AS NOMECLIENTE, ";
         $query .= "E1_SALDO AS SALDO, SE1.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
         $query .= "A1_EST AS ESTADO_CLIENTE ";
-        $query .= "FROM SE1010 AS SE1 ";
+        $query .= "FROM SE1200 AS SE1 ";
         $query .= "INNER JOIN SA1010 AS SA1 ON SA1.D_E_L_E_T_ = '' AND E1_CLIENTE = A1_COD AND E1_LOJA = A1_LOJA ";
         $query .= "WHERE SE1.D_E_L_E_T_ <> '*' ";
         $query .= "AND E1_TIPO = 'NF' AND E1_FILIAL= '01' ";
