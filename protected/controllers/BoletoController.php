@@ -54,6 +54,7 @@ class BoletoController extends Controller {
         $data_venc                          = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
         /*$valor_cobrado                      = "2950,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
         $valor_cobrado                      = str_replace(",", ".", $valor_cobrado);*/
+        
         $valor_boleto                       = number_format($_POST['valor'], 2, ',', '.');
 
         $dadosboleto["nosso_numero"]        = $_POST['nossonumero'];  // Nosso numero - REGRA: Máximo de 8 caracteres!
