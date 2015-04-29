@@ -4250,3 +4250,174 @@ Stack trace:
 REQUEST_URI=/images/6.png
 HTTP_REFERER=http://emv/boleto/imprimir
 ---
+2015/04/28 18:10:18 [error] [php] A non well formed numeric value encountered (/var/www/emv/protected/controllers/BoletoController.php:58)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/emv/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emv/protected/controllers/BoletoController.php (58)
+in /var/www/emv/index.php (13)
+2015/04/28 18:10:50 [error] [php] Undefined variable: taxa_boleto (/var/www/emv/protected/controllers/BoletoController.php:105)
+Stack trace:
+#0 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#1 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/emv/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emv/protected/controllers/BoletoController.php (105)
+in /var/www/emv/index.php (13)
+2015/04/28 18:11:11 [error] [php] Undefined variable: valor_cobrado (/var/www/emv/protected/controllers/BoletoController.php:107)
+Stack trace:
+#0 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#1 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/emv/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emv/protected/controllers/BoletoController.php (107)
+in /var/www/emv/index.php (13)
+2015/04/28 18:11:23 [error] [php] Undefined variable: valor_cobrado (/var/www/emv/protected/controllers/BoletoController.php:107)
+Stack trace:
+#0 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#1 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/emv/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emv/protected/controllers/BoletoController.php (107)
+in /var/www/emv/index.php (13)
+2015/04/28 18:11:27 [error] [php] Undefined variable: valor_cobrado (/var/www/emv/protected/controllers/BoletoController.php:107)
+Stack trace:
+#0 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#1 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/emv/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emv/protected/controllers/BoletoController.php (107)
+in /var/www/emv/index.php (13)
+2015/04/28 18:11:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:11:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:11:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:12:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:13:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:22:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:23:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:24:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:24:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---
+2015/04/28 18:24:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "images/6.png".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/6.png')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/emv/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/images/6.png
+HTTP_REFERER=http://emv/boleto/imprimir
+---

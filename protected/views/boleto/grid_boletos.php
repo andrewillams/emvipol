@@ -37,6 +37,8 @@
                                         <input type="hidden" name="cidcliente" value="<?= $dados[$cnt]['cidcliente']?>">
                                         <input type="hidden" name="estcliente" value="<?= $dados[$cnt]['estcliente']?>">
                                         <input type="hidden" name="nossonumero" value="<?= $dados[$cnt]['nossonumero']?>">
+                                        <input type="hidden" name="valor" value="<?= $dados[$cnt]['valor']?>">
+                                        <input type="hidden" name="nomeempresa" value="<?= $dados[$cnt]['nomeempresa']?>">
                                     </form>
                                     
                                 <?php } ?>

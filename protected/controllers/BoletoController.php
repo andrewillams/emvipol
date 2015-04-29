@@ -50,11 +50,11 @@ class BoletoController extends Controller {
 
         // DADOS DO BOLETO PARA O SEU CLIENTE
         $dias_de_prazo_para_pagamento       = 5;
-        $taxa_boleto                        = 2.95;
+        //$taxa_boleto                        = 2.95;
         $data_venc                          = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
-        $valor_cobrado                      = "2950,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-        $valor_cobrado                      = str_replace(",", ".", $valor_cobrado);
-        $valor_boleto                       = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
+        /*$valor_cobrado                      = "2950,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+        $valor_cobrado                      = str_replace(",", ".", $valor_cobrado);*/
+        $valor_boleto                       = number_format($_POST['valor'], 2, ',', '.');
 
         $dadosboleto["nosso_numero"]        = $_POST['nossonumero'];  // Nosso numero - REGRA: Máximo de 8 caracteres!
         $dadosboleto["numero_documento"]    = '0123'; // Num do pedido ou nosso numero
@@ -93,20 +93,20 @@ class BoletoController extends Controller {
         // DADOS PERSONALIZADOS - ITAÚ
         $dadosboleto["carteira"]            = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
         // SEUS DADOS
-        $dadosboleto["identificacao"]       = "BoletoPhp - Código Aberto de Sistema de Boletos";
-        $dadosboleto["cpf_cnpj"]            = "";
-        $dadosboleto["endereco"]            = "Coloque o endereço da sua empresa aqui";
-        $dadosboleto["cidade_uf"]           = "Cidade / Estado";
-        $dadosboleto["cedente"]             = "Coloque a Razão Social da sua empresa aqui";
+        $dadosboleto["identificacao"]               = "BoletoPhp - Código Aberto de Sistema de Boletos";
+        $dadosboleto["cpf_cnpj"]                    = "";
+        $dadosboleto["endereco"]                    = "Coloque o endereço da sua empresa aqui";
+        $dadosboleto["cidade_uf"]                   = "Cidade / Estado";
+        $dadosboleto["cedente"]                     = $_POST['nomeempresa'];
 
         $this->render('imprimir',
                 array(
-                    'dias_de_prazo_para_pagamento' => $dias_de_prazo_para_pagamento,
-                    'taxa_boleto' => $taxa_boleto,
-                    'data_venc' => $data_venc,
-                    'valor_cobrado' => $valor_cobrado,
-                    'valor_boleto' => $valor_boleto,
-                    'dadosboleto' => $dadosboleto,
+                    'dias_de_prazo_para_pagamento'  => $dias_de_prazo_para_pagamento,
+                    'taxa_boleto'                   => 0,
+                    'data_venc'                     => $data_venc,
+                    'valor_cobrado'                 => 0,
+                    'valor_boleto'                  => $valor_boleto,
+                    'dadosboleto'                   => $dadosboleto,
                 )
             );
     }
