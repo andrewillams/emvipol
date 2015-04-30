@@ -7,7 +7,7 @@ class Boleto extends CActiveRecord {
         $CGC    = NULL;
 
         # MS SQL Server and Sybase with PDO_DBLIB
-        $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=TREINA", "acesso", "@ccess");
+        $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=EMVIPOL", "acesso", "@ccess");
 
         if( isset( $_POST['CGC'] ) )
         {
