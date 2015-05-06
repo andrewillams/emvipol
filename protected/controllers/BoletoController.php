@@ -73,10 +73,10 @@ class BoletoController extends Controller {
         //$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Nonononono";
         //$dadosboleto["demonstrativo2"] = "Mensalidade referente a nonon nonooon nononon<br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
         //$dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
-        $dadosboleto["instrucoes1"]         = "- Instruções a definir";
-        $dadosboleto["instrucoes2"]         = "- Instruções a definir";
-        $dadosboleto["instrucoes3"]         = "- Instruções a definir";
-        $dadosboleto["instrucoes4"]         = "&nbsp; Instruções a definir";
+        $dadosboleto["instrucoes1"]         = "- Multa de 2,00% Após o Vencimento";
+        $dadosboleto["instrucoes2"]         = "- Não efetuar depósito em conta sem autorização";
+        $dadosboleto["instrucoes3"]         = "- Não receber 05 dias após o vencimento";
+        $dadosboleto["instrucoes4"]         = "&nbsp; Não conceder quaisquer Descontos";
 
         // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
         $dadosboleto["quantidade"]          = "";
@@ -84,7 +84,6 @@ class BoletoController extends Controller {
         $dadosboleto["aceite"]              = "";
         $dadosboleto["especie"]             = "R$";
         $dadosboleto["especie_doc"]         = "";
-
 
         // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
         // DADOS DA SUA CONTA - ITAÚ
