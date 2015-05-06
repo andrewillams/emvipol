@@ -849,9 +849,10 @@
                         <span class=cp> 
                             <FONT class=campo>
                                 <?php echo $dadosboleto["instrucoes1"]; ?><br>
+                                <?php echo $dadosboleto["instrucoes5"]; ?><br>
                                 <?php echo $dadosboleto["instrucoes2"]; ?><br>
                                 <?php echo $dadosboleto["instrucoes3"]; ?><br>
-                                <?php echo $dadosboleto["instrucoes4"]; ?>
+                                <?php echo $dadosboleto["instrucoes4"]; ?><br>
                             </FONT>
                             <br><br>
                         </span>

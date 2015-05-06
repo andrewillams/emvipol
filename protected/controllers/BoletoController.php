@@ -73,10 +73,11 @@ class BoletoController extends Controller {
         //$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Nonononono";
         //$dadosboleto["demonstrativo2"] = "Mensalidade referente a nonon nonooon nononon<br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
         //$dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
-        $dadosboleto["instrucoes1"]         = "- Multa de 2,00% Após o Vencimento";
+        $dadosboleto["instrucoes1"]         = "- Mora diária de R$ " . $_POST['jurosmora'];
         $dadosboleto["instrucoes2"]         = "- Não efetuar depósito em conta sem autorização";
         $dadosboleto["instrucoes3"]         = "- Não receber 05 dias após o vencimento";
-        $dadosboleto["instrucoes4"]         = "&nbsp; Não conceder quaisquer Descontos";
+        $dadosboleto["instrucoes4"]         = "- Não conceder quaisquer Descontos";
+        $dadosboleto["instrucoes5"]         = "&nbsp; Multa de 2,00% Após o Vencimento";
 
         // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
         $dadosboleto["quantidade"]          = "";

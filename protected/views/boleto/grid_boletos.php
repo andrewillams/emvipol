@@ -39,6 +39,7 @@
                                         <input type="hidden" name="nossonumero" value="<?= $dados[$cnt]['nossonumero']?>">
                                         <input type="hidden" name="valor" value="<?= $dados[$cnt]['valor']?>">
                                         <input type="hidden" name="nomeempresa" value="<?= $dados[$cnt]['nomeempresa']?>">
+                                        <input type="hidden" name="jurosmora" value="<?= number_format($dados[$cnt]['mora'], 2, ',', '.')?>">
                                     </form>
                                     
                                 <?php } ?>
