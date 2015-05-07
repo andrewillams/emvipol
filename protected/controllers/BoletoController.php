@@ -51,14 +51,14 @@ class BoletoController extends Controller {
         // DADOS DO BOLETO PARA O SEU CLIENTE
         $dias_de_prazo_para_pagamento       = 5;
         //$taxa_boleto                        = 2.95;
-        $data_venc                          = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
+        $data_venc                          = $_POST['vencimento']; //date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
         /*$valor_cobrado                      = "2950,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
         $valor_cobrado                      = str_replace(",", ".", $valor_cobrado);*/
         
         $valor_boleto                       = number_format($_POST['valor'], 2, ',', '.');
 
         $dadosboleto["nosso_numero"]        = $_POST['nossonumero'];  // Nosso numero - REGRA: Máximo de 8 caracteres!
-        $dadosboleto["numero_documento"]    = '0123'; // Num do pedido ou nosso numero
+        $dadosboleto["numero_documento"]    = $_POST['numeroDocumento']; // Num do pedido ou nosso numero
         $dadosboleto["data_vencimento"]     = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
         $dadosboleto["data_documento"]      = date("d/m/Y"); // Data de emissão do Boleto
         $dadosboleto["data_processamento"]  = date("d/m/Y"); // Data de processamento do boleto (opcional)

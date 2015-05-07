@@ -7,7 +7,7 @@ class Boleto extends CActiveRecord {
         $CGC    = NULL;
 
         # MS SQL Server and Sybase with PDO_DBLIB
-        $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=TREINA", "acesso", "@ccess");
+        $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=EMVIPOL", "acesso", "@ccess");
 
         if( isset( $_POST['CGC'] ) )
         {
@@ -64,21 +64,22 @@ class Boleto extends CActiveRecord {
             $vencimento = date("d/m/Y"  , strtotime(    $r['VENCIMENTO' ]   )   );
             $emissao    = date("d/m/Y"  , strtotime(    $r['EMISSAO'    ]   )   );
             
-            $retJSON[]          = [
-                'emissao'       => $emissao,
-                'vencimento'    => $vencimento,
-                'nomeempresa'   => $r['EMPRESA'],
-                'valor'         => $r['VALOR'],
-                'saldo'         => $r['SALDO'],
-                'reg'           => $r['REG'],
-                'nomecliente'   => $r['NOMECLIENTE'],
-                'endcliente'    => $r['ENDERECO_CLIENTE'],
-                'cidcliente'    => $r['CIDADE_CLIENTE'],
-                'cepcliente'    => $r['CEP_CLIENTE'],
-                'estcliente'    => $r['ESTADO_CLIENTE'],
-                'mora'          => $r['JUROMORA'],
-                'chave'         => $r['FILIAL'] . $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA'] . $r['TIPO'],
-                'nossonumero'   => $r['NOSSONUMERO']
+            $retJSON[]              = [
+                'emissao'           => $emissao,
+                'vencimento'        => $vencimento,
+                'nomeempresa'       => $r['EMPRESA'],
+                'valor'             => $r['VALOR'],
+                'saldo'             => $r['SALDO'],
+                'reg'               => $r['REG'],
+                'nomecliente'       => $r['NOMECLIENTE'],
+                'endcliente'        => $r['ENDERECO_CLIENTE'],
+                'cidcliente'        => $r['CIDADE_CLIENTE'],
+                'cepcliente'        => $r['CEP_CLIENTE'],
+                'estcliente'        => $r['ESTADO_CLIENTE'],
+                'mora'              => $r['JUROMORA']                                                           ,
+                'chave'             => $r['FILIAL'] . $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA'] . $r['TIPO'] ,
+                'numeeroDocumento'  => $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA']                             ,
+                'nossonumero'       => $r['NOSSONUMERO']
             ];
         }
 
