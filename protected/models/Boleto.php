@@ -18,8 +18,11 @@ class Boleto extends CActiveRecord {
         //AAAAMMDD
 
         $query  = "SELECT * FROM ( ";
-        $query .= "SELECT 'NATAL TECNOLOGIA E SEGURANÇA LTDA' AS EMPRESA,  E1_NUMBCO AS NOSSONUMERO, E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
-        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, E1_NOMCLI AS NOMECLIENTE, ";
+        $query .= "SELECT 'NATAL TECNOLOGIA E SEGURANÇA LTDA' AS EMPRESA,  "
+                . "E1_NUMBCO AS NOSSONUMERO, "
+                . "E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
+        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
+                . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
         $query .= "E1_SALDO AS SALDO, SE12.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
         $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC ";
         $query .= "FROM SE1200 AS SE12 ";
@@ -33,8 +36,11 @@ class Boleto extends CActiveRecord {
         
         $query .= "UNION ";
 
-        $query .= "SELECT 'EMPRESA DE VIGILÂNCIA POTIGUAR' AS EMPRESA, E1_NUMBCO AS NOSSONUMERO, E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
-        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, E1_NOMCLI AS NOMECLIENTE, ";
+        $query .= "SELECT 'EMPRESA DE VIGILÂNCIA POTIGUAR' AS EMPRESA, "
+                . "LEFT(E1_NUMBCO,8) + '-' + RIGHT(RTRIM(LTRIM(E1_NUMBCO)),1) AS NOSSONUMERO, "
+                . "E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
+        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
+                . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
         $query .= "E1_SALDO AS SALDO, SE11.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
         $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC ";
         $query .= "FROM SE1100 AS SE11 ";
@@ -78,7 +84,7 @@ class Boleto extends CActiveRecord {
                 'estcliente'        => $r['ESTADO_CLIENTE'],
                 'mora'              => $r['JUROMORA']                                                           ,
                 'chave'             => $r['FILIAL'] . $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA'] . $r['TIPO'] ,
-                'numeeroDocumento'  => $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA']                             ,
+                'numeroDocumento'   => $r['PREFIXO'] . '-' . $r['NUMERO'] . '-' .  $r['PARCELA']                             ,
                 'nossonumero'       => $r['NOSSONUMERO']
             ];
         }

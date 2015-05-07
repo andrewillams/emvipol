@@ -31,15 +31,18 @@
                                                name="regSE1" 
                                                value="<?php echo $dados[$cnt]['reg'] ?>">
 
-                                        <input type="hidden" name="nomecliente" value="<?= $dados[$cnt]['nomecliente']?>">
-                                        <input type="hidden" name="endcliente" value="<?= $dados[$cnt]['endcliente']?>">
-                                        <input type="hidden" name="cepcliente" value="<?= $dados[$cnt]['cepcliente']?>">
-                                        <input type="hidden" name="cidcliente" value="<?= $dados[$cnt]['cidcliente']?>">
-                                        <input type="hidden" name="estcliente" value="<?= $dados[$cnt]['estcliente']?>">
-                                        <input type="hidden" name="nossonumero" value="<?= $dados[$cnt]['nossonumero']?>">
-                                        <input type="hidden" name="valor" value="<?= $dados[$cnt]['valor']?>">
-                                        <input type="hidden" name="nomeempresa" value="<?= $dados[$cnt]['nomeempresa']?>">
-                                        <input type="hidden" name="jurosmora" value="<?= number_format($dados[$cnt]['mora'], 2, ',', '.')?>">
+                                        <input type="hidden" name="nomecliente"     value="<?= $dados[$cnt]['nomecliente']?>">
+                                        <input type="hidden" name="endcliente"      value="<?= $dados[$cnt]['endcliente']?>">
+                                        <input type="hidden" name="cepcliente"      value="<?= $dados[$cnt]['cepcliente']?>">
+                                        <input type="hidden" name="cidcliente"      value="<?= $dados[$cnt]['cidcliente']?>">
+                                        <input type="hidden" name="estcliente"      value="<?= $dados[$cnt]['estcliente']?>">
+                                        <input type="hidden" name="nossonumero"     value="<?= $dados[$cnt]['nossonumero']?>">
+                                        <input type="hidden" name="numeroDocumento" value="<?= $dados[$cnt]['numeroDocumento']?>">
+                                        <input type="hidden" name="valor"           value="<?= $dados[$cnt]['valor']?>">
+                                        <input type="hidden" name="vencimento"      value="<?= $dados[$cnt]['vencimento']?>">
+                                        <input type="hidden" name="emissao"         value="<?= $dados[$cnt]['emissao']?>">
+                                        <input type="hidden" name="nomeempresa"     value="<?= $dados[$cnt]['nomeempresa']?>">
+                                        <input type="hidden" name="jurosmora"       value="<?= number_format($dados[$cnt]['mora'], 2, ',', '.')?>">
                                     </form>
                                     
                                 <?php } ?>
