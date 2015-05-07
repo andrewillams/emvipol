@@ -37,7 +37,7 @@ class Boleto extends CActiveRecord {
         $query .= "UNION ";
 
         $query .= "SELECT 'EMPRESA DE VIGILÂNCIA POTIGUAR' AS EMPRESA, "
-                . "LEFT(E1_NUMBCO,8) + '-' + RIGHT(RTRIM(LTRIM(E1_NUMBCO)),1) AS NOSSONUMERO, "
+                . "E1_NUMBCO AS NOSSONUMERO, "
                 . "E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
         $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
                 . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
@@ -59,6 +59,8 @@ class Boleto extends CActiveRecord {
 
         //
 
+        var_dump($query);
+        
         $sth = $db->prepare($query);
 
         $sth->execute();

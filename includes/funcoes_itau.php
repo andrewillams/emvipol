@@ -23,7 +23,9 @@ $dv = digitoVerificador_barra($codigo_barras);
 // Numero para o codigo de barras com 44 digitos
 $linha = substr($codigo_barras, 0, 4) . $dv . substr($codigo_barras, 4, 43);
 
-$nossonumero = $carteira . '/' . $nnum . '-' . modulo_10($agencia . $conta . $carteira . $nnum);
+//$nossonumero = $carteira . '/' . $nnum . '-' . modulo_10($agencia . $conta . $carteira . $nnum);
+$nossonumero =  $carteira . '/' . substr($dadosboleto["nosso_numero"],0,8) . '-' . substr($dadosboleto["nosso_numero"],8,1); 
+
 $agencia_codigo = $agencia . " / " . $conta . "-" . modulo_10($agencia . $conta);
 
 $dadosboleto["codigo_barras"] = $linha;
