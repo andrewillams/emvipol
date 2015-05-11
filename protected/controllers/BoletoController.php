@@ -88,9 +88,12 @@ class BoletoController extends Controller {
 
         // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
         // DADOS DA SUA CONTA - ITAÚ
-        $dadosboleto["agencia"]             = "1565"; // Num da agencia, sem digito
-        $dadosboleto["conta"]               = "13877"; // Num da conta, sem digito
-        $dadosboleto["conta_dv"]            = "4";  // Digito do Num da conta
+        $conta      = trim($_POST['conta']);
+        $tamConta = strlen($conta);
+        
+        $dadosboleto["agencia"]             = substr($_POST['agencia'],0,4); //"1565"; // Num da agencia, sem digito
+        $dadosboleto["conta"]               = substr($_POST['conta'],0, ($tamConta-1));       //"13877"; // Num da conta, sem digito
+        $dadosboleto["conta_dv"]            = substr($_POST['conta'],($tamConta), 1); //"4";  // Digito do Num da conta
         // DADOS PERSONALIZADOS - ITAÚ
         $dadosboleto["carteira"]            = "109";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
         // SEUS DADOS

@@ -37,6 +37,8 @@
                                         <input type="hidden" name="cidcliente"      value="<?= $dados[$cnt]['cidcliente']?>">
                                         <input type="hidden" name="estcliente"      value="<?= $dados[$cnt]['estcliente']?>">
                                         <input type="hidden" name="nossonumero"     value="<?= $dados[$cnt]['nossonumero']?>">
+                                        <input type="hidden" name="conta"           value="<?= $dados[$cnt]['conta']?>">
+                                        <input type="hidden" name="agencia"         value="<?= $dados[$cnt]['agencia']?>">
                                         <input type="hidden" name="numeroDocumento" value="<?= $dados[$cnt]['numeroDocumento']?>">
                                         <input type="hidden" name="valor"           value="<?= $dados[$cnt]['valor']?>">
                                         <input type="hidden" name="vencimento"      value="<?= $dados[$cnt]['vencimento']?>">

@@ -24,9 +24,11 @@ class Boleto extends CActiveRecord {
         $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
                 . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
         $query .= "E1_SALDO AS SALDO, SE12.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
-        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC ";
+        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC, "
+                . "EE_AGENCIA AS AGENCIA, LTRIM(RTRIM(EE_CONTA)) AS CONTA ";
         $query .= "FROM SE1200 AS SE12 ";
         $query .= "INNER JOIN SA1200 AS SA1 ON SA1.D_E_L_E_T_ = '' AND SE12.E1_CLIENTE = A1_COD AND SE12.E1_LOJA = A1_LOJA ";
+        $query .= "INNER JOIN SEE200 AS SEE ON SEE.D_E_L_E_T_ = '' AND EE_CODIGO = '341' AND EE_CARTEIR = '109' AND E1_FILIAL = EE_FILIAL ";
         $query .= "WHERE SE12.D_E_L_E_T_ <> '*' AND E1_PREFIXO = 'R' AND E1_TIPO = 'NF' AND E1_FILIAL = '01' AND E1_SALDO = E1_VALOR AND E1_VENCREA >= " . date('Ymd') . " AND E1_NUMBCO !='' ";
         
         if( $CGC != NULL )
@@ -42,9 +44,11 @@ class Boleto extends CActiveRecord {
         $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
                 . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
         $query .= "E1_SALDO AS SALDO, SE11.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
-        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC ";
+        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC, "
+                . "EE_AGENCIA AS AGENCIA, LTRIM(RTRIM(EE_CONTA)) AS CONTA ";
         $query .= "FROM SE1100 AS SE11 ";
         $query .= "INNER JOIN SA1100 AS SA1 ON SA1.D_E_L_E_T_ = '' AND E1_CLIENTE = A1_COD AND E1_LOJA = A1_LOJA ";
+        $query .= "INNER JOIN SEE100 AS SEE ON SEE.D_E_L_E_T_ = '' AND EE_CODIGO = '341' AND EE_CARTEIR = '109' AND E1_FILIAL = EE_FILIAL ";
         $query .= "WHERE SE11.D_E_L_E_T_ <> '*' AND E1_PREFIXO = 'R' AND E1_TIPO = 'NF' AND E1_FILIAL = '01' AND E1_SALDO = E1_VALOR AND E1_VENCREA >= " . date('Ymd') . " AND E1_NUMBCO !='' ";
         
         if( $CGC != NULL )
@@ -56,10 +60,6 @@ class Boleto extends CActiveRecord {
         $query .= "AS SE1 ";
         
         //$query .= "ORDER BY REG DESC ";
-
-        //
-
-        var_dump($query);
         
         $sth = $db->prepare($query);
 
@@ -87,7 +87,9 @@ class Boleto extends CActiveRecord {
                 'mora'              => $r['JUROMORA']                                                           ,
                 'chave'             => $r['FILIAL'] . $r['PREFIXO'] . $r['NUMERO'] . $r['PARCELA'] . $r['TIPO'] ,
                 'numeroDocumento'   => $r['PREFIXO'] . '-' . $r['NUMERO'] . '-' .  $r['PARCELA']                             ,
-                'nossonumero'       => $r['NOSSONUMERO']
+                'nossonumero'       => $r['NOSSONUMERO'],
+                'agencia'           => $r['AGENCIA'],
+                'conta'             => $r['CONTA']
             ];
         }
 
