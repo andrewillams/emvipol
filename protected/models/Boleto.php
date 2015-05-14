@@ -20,7 +20,7 @@ class Boleto extends CActiveRecord {
         $query  = "SELECT * FROM ( ";
         
         $query .= "SELECT   'NATAL TECNOLOGIA E SEGURANÇA LTDA'                                 AS EMPRESA          , "
-                . "         SE12.E1_NUMBCO                                                      AS NOSSONUMERO      , "
+                . "         LTRIM(RTRIM(SE12.E1_NUMBCO))                                        AS NOSSONUMERO      , "
                 . "         SE12.E1_FILIAL                                                      AS FILIAL           , "
                 . "         SE12.E1_PREFIXO                                                     AS PREFIXO          , "
                 . "         SE12.E1_NUM                                                         AS NUMERO           , "
@@ -97,7 +97,7 @@ class Boleto extends CActiveRecord {
         $query .= "UNION ";
 
         $query .= "SELECT   'EMPRESA DE VIGILÂNCIA POTIGUAR'                                    AS EMPRESA          , "
-                . "         SE11.E1_NUMBCO                                                      AS NOSSONUMERO      , "
+                . "         LTRIM(RTRIM(SE11.E1_NUMBCO))                                        AS NOSSONUMERO      , "
                 . "         SE11.E1_FILIAL                                                      AS FILIAL           , "
                 . "         SE11.E1_PREFIXO                                                     AS PREFIXO          , "
                 . "         SE11.E1_NUM                                                         AS NUMERO           , "

@@ -1,9 +1,9 @@
 <?php
 
-$codigobanco = "341";
-$codigo_banco_com_dv = geraCodigoBanco($codigobanco);
-$nummoeda = "9";
-$fator_vencimento = fator_vencimento($dadosboleto["data_vencimento"]);
+$codigobanco            = "341"                                             ;
+$codigo_banco_com_dv    = geraCodigoBanco($codigobanco)                     ;
+$nummoeda               = "9"                                               ;
+$fator_vencimento       = fator_vencimento($dadosboleto["data_vencimento"]) ;
 
 //valor tem 10 digitos, sem virgula
 $valor = formata_numero($dadosboleto["valor_boleto"], 10, 0, "valor");
@@ -15,9 +15,27 @@ $conta_dv = formata_numero($dadosboleto["conta_dv"], 1, 0);
 //carteira 175
 $carteira = $dadosboleto["carteira"];
 //nosso_numero no maximo 8 digitos
-$nnum = formata_numero($dadosboleto["nosso_numero"], 8, 0);
+$nnum = formata_numero(trim($dadosboleto["nosso_numero"]), 8, 0);
+/*
+echo '$dadosboleto["nosso_numero"] <br>';
+var_dump($dadosboleto["nosso_numero"]);
+echo '<br><br>';
+echo '$nnum <br>';
+var_dump($nnum);
+echo '<br><br>';
+
+$parteH = modulo_10($agencia . $conta . $carteira . $nnum);
+$parteK = modulo_10($agencia . $conta);
+
+echo 'parteH';
+
+var_dump($parteH);
+
+echo '<br><br>';*/
 
 $codigo_barras = $codigobanco . $nummoeda . $fator_vencimento . $valor . $carteira . $nnum . modulo_10($agencia . $conta . $carteira . $nnum) . $agencia . $conta . modulo_10($agencia . $conta) . '000';
+//$codigo_barras = $codigobanco . $nummoeda . $fator_vencimento . $valor . $carteira . $nnum . $parteH . $agencia . $conta . $parteK . '000';
+
 // 43 numeros para o calculo do digito verificador
 $dv = digitoVerificador_barra($codigo_barras);
 // Numero para o codigo de barras com 44 digitos
@@ -27,12 +45,24 @@ $linha = substr($codigo_barras, 0, 4) . $dv . substr($codigo_barras, 4, 43);
 $nossonumero =  $carteira . '/' . substr($dadosboleto["nosso_numero"],0,8) . '-' . substr($dadosboleto["nosso_numero"],8,1); 
 
 $agencia_codigo = $agencia . " / " . $conta . "-" . modulo_10($agencia . $conta);
+/*
+echo 'codBanco: ' . $codigobanco        . '<br>';
+echo 'numMoeda: ' . $nummoeda           . '<br>';
+echo 'digVerif: ' . $dv                 . '<br>';
+echo 'fatVenci: ' . $fator_vencimento   . '<br>';
+echo 'Valor   : ' . $valor              . '<br>';
+echo 'Carteira: ' . $carteira           . '<br>';
+echo 'nossoNum: ' . $nnum               . '<br>';
+echo 'Parte H : ' . $parteH             . '<br>';
+echo 'Agencia : ' . $agencia            . '<br>';
+echo 'Conta   : ' . $conta              . '<br>';
+echo 'Parte K : ' . $parteK             . '<br>';*/
 
-$dadosboleto["codigo_barras"] = $linha;
-$dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha); // verificar
-$dadosboleto["agencia_codigo"] = $agencia_codigo;
-$dadosboleto["nosso_numero"] = $nossonumero;
-$dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
+$dadosboleto["codigo_barras"        ] = $linha                          ;
+$dadosboleto["linha_digitavel"      ] = monta_linha_digitavel($linha)   ; // verificar
+$dadosboleto["agencia_codigo"       ] = $agencia_codigo                 ;
+$dadosboleto["nosso_numero"         ] = $nossonumero                    ;
+$dadosboleto["codigo_banco_com_dv"  ] = $codigo_banco_com_dv            ;
 
 // FUN��ES
 // Algumas foram retiradas do Projeto PhpBoleto e modificadas para atender as particularidades de cada banco
@@ -51,8 +81,15 @@ function digitoVerificador_barra($numero) {
 function formata_numero($numero, $loop, $insert, $tipo = "geral") {
     if ($tipo == "geral") {
         $numero = str_replace(",", "", $numero);
-        while (strlen($numero) < $loop) {
-            $numero = $insert . $numero;
+        
+        if (strlen($numero) > $loop)
+        {
+            $numero = substr($numero, (strlen($numero) - 8), 8);
+        } else {
+            
+            while (strlen($numero) < $loop) {
+                $numero = $insert . $numero;
+            }
         }
     }
     if ($tipo == "valor") {
@@ -277,33 +314,71 @@ function fbarcode($valor) {
 
 // Alterada por Glauber Portella para especifica��o do Ita�
     function monta_linha_digitavel($codigo) {
+        
+        
+/*
+ *                    1          2           3            4          5
+ *      012 3 4 5678 9012345678 901 23456789 0 1234 56789 0 1234567890
+ *       a  b c   d       e      f      g     h   i    j   k
+ *      341 9 1 6455 0000021850 109 000666007 6 7123 11075 6 000 (errado)
+ *      341 9 3 6455 0000021850 109 00666007 9 7123 11075 6 000  (certo )
+ * 
+ *      34191.09008 06660.077121 31107.560000 3 64550000021850 (protheus)
+ *      34191.09008 06660.076719 23110.756006 1 64550000021850 (errado  )
+ *      34191.09008 66600.797121 31107.560000 3 64550000021850 (certo   )
+ * 
+ *  codBanco: 341           //a
+    numMoeda: 9             //b
+    digVerif: 1             //c
+    fatVenci: 6455          //d
+    Valor   : 0000021850    //e
+    Carteira: 109           //f
+    nossoNum: 000666007     //g
+    Parte H : 6             //h
+    Agencia : 7123          //i
+    Conta   : 11075         //j
+    Parte K : 6             //k
+ **/
+        
+//        echo 'codigo: ' . $codigo;
+        
         // campo 1
-        $banco = substr($codigo, 0, 3);
-        $moeda = substr($codigo, 3, 1);
-        $ccc = substr($codigo, 19, 3);
-        $ddnnum = substr($codigo, 22, 2);
-        $dv1 = modulo_10($banco . $moeda . $ccc . $ddnnum);
+        $banco      = substr($codigo, 00, 3);
+        $moeda      = substr($codigo, 03, 1);
+        $ccc        = substr($codigo, 19, 3);
+        $ddnnum     = substr($codigo, 22, 2);
+        $dv1        = modulo_10($banco . $moeda . $ccc . $ddnnum);
+        
         // campo 2
-        $resnnum = substr($codigo, 24, 6);
-        $dac1 = substr($codigo, 30, 1); //modulo_10($agencia.$conta.$carteira.$nnum);
-        $dddag = substr($codigo, 31, 3);
-        $dv2 = modulo_10($resnnum . $dac1 . $dddag);
+        $resnnum    = substr($codigo, 24, 6);
+        $dac1       = substr($codigo, 30, 1); //modulo_10($agencia.$conta.$carteira.$nnum);
+        $dddag      = substr($codigo, 31, 3);
+        $dv2        = modulo_10($resnnum . $dac1 . $dddag);
+        
         // campo 3
-        $resag = substr($codigo, 34, 1);
-        $contadac = substr($codigo, 35, 6); //substr($codigo,35,5).modulo_10(substr($codigo,35,5));
-        $zeros = substr($codigo, 41, 3);
-        $dv3 = modulo_10($resag . $contadac . $zeros);
+        $resag      = substr($codigo, 34, 1);
+        $contadac   = substr($codigo, 35, 6); //substr($codigo,35,5).modulo_10(substr($codigo,35,5));
+        $zeros      = substr($codigo, 41, 3);
+        $dv3        = modulo_10($resag . $contadac . $zeros);
+        
         // campo 4
-        $dv4 = substr($codigo, 4, 1);
+        $dv4        = substr($codigo, 4, 1);
+        
         // campo 5
-        $fator = substr($codigo, 5, 4);
-        $valor = substr($codigo, 9, 10);
+        $fator      = substr($codigo, 5, 4);
+        $valor      = substr($codigo, 9, 10);
 
-        $campo1 = substr($banco . $moeda . $ccc . $ddnnum . $dv1, 0, 5) . '.' . substr($banco . $moeda . $ccc . $ddnnum . $dv1, 5, 5);
-        $campo2 = substr($resnnum . $dac1 . $dddag . $dv2, 0, 5) . '.' . substr($resnnum . $dac1 . $dddag . $dv2, 5, 6);
-        $campo3 = substr($resag . $contadac . $zeros . $dv3, 0, 5) . '.' . substr($resag . $contadac . $zeros . $dv3, 5, 6);
-        $campo4 = $dv4;
-        $campo5 = $fator . $valor;
+        $campo1 =   substr($banco       . $moeda    . $ccc   . $ddnnum . $dv1   , 0, 5) . '.' . 
+                    substr($banco       . $moeda    . $ccc   . $ddnnum . $dv1   , 5, 5)         ;
+        
+        $campo2 =   substr($resnnum     . $dac1     . $dddag . $dv2             , 0, 5) . '.' . 
+                    substr($resnnum     . $dac1     . $dddag . $dv2             , 5, 6)         ;
+        
+        $campo3 =   substr($resag       . $contadac . $zeros . $dv3             , 0, 5) . '.' . 
+                    substr($resag       . $contadac . $zeros . $dv3             , 5, 6)         ;
+        
+        $campo4 =   $dv4                                                                        ;
+        $campo5 =   $fator . $valor                                                             ;
 
         return "$campo1 $campo2 $campo3 $campo4 $campo5";
     }
