@@ -18,43 +18,158 @@ class Boleto extends CActiveRecord {
         //AAAAMMDD
 
         $query  = "SELECT * FROM ( ";
-        $query .= "SELECT 'NATAL TECNOLOGIA E SEGURANÇA LTDA' AS EMPRESA,  "
-                . "E1_NUMBCO AS NOSSONUMERO, "
-                . "E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
-        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
-                . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
-        $query .= "E1_SALDO AS SALDO, SE12.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
-        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC, "
-                . "EE_AGENCIA AS AGENCIA, LTRIM(RTRIM(EE_CONTA)) AS CONTA ";
-        $query .= "FROM SE1200 AS SE12 ";
-        $query .= "INNER JOIN SA1200 AS SA1 ON SA1.D_E_L_E_T_ = '' AND SE12.E1_CLIENTE = A1_COD AND SE12.E1_LOJA = A1_LOJA ";
-        $query .= "INNER JOIN SEE200 AS SEE ON SEE.D_E_L_E_T_ = '' AND EE_CODIGO = '341' AND EE_CARTEIR = '109' AND E1_FILIAL = EE_FILIAL ";
-        $query .= "WHERE SE12.D_E_L_E_T_ <> '*' AND E1_PREFIXO = 'R' AND E1_TIPO = 'NF' AND E1_FILIAL = '01' AND E1_SALDO = E1_VALOR AND E1_VENCREA >= " . date('Ymd') . " AND E1_NUMBCO !='' ";
+        
+        $query .= "SELECT   'NATAL TECNOLOGIA E SEGURANÇA LTDA'                                 AS EMPRESA          , "
+                . "         SE12.E1_NUMBCO                                                      AS NOSSONUMERO      , "
+                . "         SE12.E1_FILIAL                                                      AS FILIAL           , "
+                . "         SE12.E1_PREFIXO                                                     AS PREFIXO          , "
+                . "         SE12.E1_NUM                                                         AS NUMERO           , "
+                . "         SE12.E1_PARCELA                                                     AS PARCELA          , "
+                . "         SE12.E1_TIPO                                                        AS TIPO             , "
+                . "         SE12.E1_EMISSAO                                                     AS EMISSAO          , "
+                . "         SE12.E1_VALJUR                                                      AS JUROMORA         , "
+                . "         SE12.E1_VENCREA                                                     AS VENCIMENTO       , "
+                . "         ((SE12.E1_VALOR - SUM(ISNULL(SE1i.E1_VALOR,0))) - SE12.E1_ACRESC)   AS VALOR            , "
+                . "         SE12.E1_CLIENTE                                                     AS CLIENTE          , "
+                . "         A1_LOJA                                                             AS LOJACLIENTE      , "
+                . "         RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'                             AS NOMECLIENTE      , "
+                . "         SE12.E1_SALDO                                                       AS SALDO            , "
+                . "         SE12.R_E_C_N_O_                                                     AS REG              , "
+                . "         A1_END                                                              AS ENDERECO_CLIENTE , "
+                . "         A1_MUN                                                              AS CIDADE_CLIENTE   , "
+                . "         A1_CEP                                                              AS CEP_CLIENTE      , "
+                . "         A1_EST                                                              AS ESTADO_CLIENTE   , "
+                . "         A1_CGC                                                              AS CGC              , "
+                . "         EE_AGENCIA                                                          AS AGENCIA          , "
+                . "         LTRIM(RTRIM(EE_CONTA))                                              AS CONTA              "
+                . "FROM                     SE1200 AS SE12 "
+                . "LEFT     OUTER   JOIN    SE1200 AS SE1i ON   SE1i.D_E_L_E_T_ =       ''              AND "
+                . "                                             SE12.E1_FILIAL  =       SE1i.E1_FILIAL  AND "
+                . "                                             SE12.E1_PREFIXO =       SE1i.E1_PREFIXO AND "
+                . "                                             SE12.E1_NUM     =       SE1i.E1_NUM     AND "
+                . "                                             SE12.E1_PARCELA =       SE1i.E1_PARCELA AND "
+                . "                                             SE1i.E1_TIPO    LIKE    '%-%'               "
+                . "INNER            JOIN    SA1200 AS SA1  ON   SA1.D_E_L_E_T_  =       ''              AND "
+                . "                                             SE12.E1_CLIENTE =       A1_COD          AND "
+                . "                                             SE12.E1_LOJA    =       A1_LOJA             "
+                . "INNER            JOIN    SEE200 AS SEE  ON   SEE.D_E_L_E_T_  =       ''              AND "
+                . "                                             EE_CODIGO       =       '341'           AND "
+                . "                                             EE_CARTEIR      =       '109'           AND "
+                . "                                             SE12.E1_FILIAL  =       EE_FILIAL           "
+                . "WHERE                                        SE12.D_E_L_E_T_ <>      '*'             AND "
+                . "                                             SE12.E1_PREFIXO =       'R'             AND "
+                . "                                             SE12.E1_TIPO    =       'NF'            AND "
+                . "                                             SE12.E1_FILIAL  =       '01'            AND "
+                . "                                             SE12.E1_SALDO   =       SE12.E1_VALOR   AND "
+                . "                                             SE12.E1_VENCREA >= " . date('Ymd') . "  AND "
+                . "                                             SE12.E1_NUMBCO  !=      ''                  ";
         
         if( $CGC != NULL )
         {
-            $query .= " AND CGC = " . $CGC . " ";
+            $query .= " AND A1_CGC = " . $CGC . " ";
         }
+        
+        $query .= "GROUP BY SE12.E1_NUMBCO                      , "
+                . "         SE12.E1_FILIAL                      , "
+                . "         SE12.E1_PREFIXO                     , "
+                . "         SE12.E1_NUM                         , "
+                . "         SE12.E1_PARCELA                     , "
+                . "         SE12.E1_TIPO                        , "
+                . "         SE12.E1_EMISSAO                     , "
+                . "         SE12.E1_VALJUR                      , "
+                . "         SE12.E1_VENCREA                     , "
+                . "         SE12.E1_CLIENTE                     , "
+                . "         A1_LOJA                             , "
+                . "         A1_NOME                             , "
+                . "         A1_NREDUZ                           , "
+                . "         SE12.E1_VALOR                       , "
+                . "         SE12.E1_SALDO                       , "
+                . "         SE12.E1_ACRESC                      , "
+                . "         SE12.R_E_C_N_O_                     , "
+                . "         A1_END                              , "
+                . "         A1_MUN                              , "
+                . "         A1_CEP                              , "
+                . "         A1_EST                              , "
+                . "         A1_CGC                              , "
+                . "         EE_AGENCIA                          , "
+                . "         EE_CONTA                              ";
         
         $query .= "UNION ";
 
-        $query .= "SELECT 'EMPRESA DE VIGILÂNCIA POTIGUAR' AS EMPRESA, "
-                . "E1_NUMBCO AS NOSSONUMERO, "
-                . "E1_FILIAL  AS FILIAL,  E1_PREFIXO AS PREFIXO,    E1_NUM   AS NUMERO, E1_PARCELA AS PARCELA, E1_TIPO   AS TIPO, ";
-        $query .= "E1_EMISSAO AS EMISSAO, E1_VALJUR AS JUROMORA, E1_VENCREA AS VENCIMENTO, E1_VALOR AS VALOR,  E1_CLIENTE AS CLIENTE, A1_LOJA AS LOJACLIENTE, "
-                . "RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'  AS NOMECLIENTE, ";
-        $query .= "E1_SALDO AS SALDO, SE11.R_E_C_N_O_ AS REG, A1_END AS ENDERECO_CLIENTE, A1_MUN AS CIDADE_CLIENTE, A1_CEP AS CEP_CLIENTE, ";
-        $query .= "A1_EST AS ESTADO_CLIENTE, A1_CGC AS CGC, "
-                . "EE_AGENCIA AS AGENCIA, LTRIM(RTRIM(EE_CONTA)) AS CONTA ";
-        $query .= "FROM SE1100 AS SE11 ";
-        $query .= "INNER JOIN SA1100 AS SA1 ON SA1.D_E_L_E_T_ = '' AND E1_CLIENTE = A1_COD AND E1_LOJA = A1_LOJA ";
-        $query .= "INNER JOIN SEE100 AS SEE ON SEE.D_E_L_E_T_ = '' AND EE_CODIGO = '341' AND EE_CARTEIR = '109' AND E1_FILIAL = EE_FILIAL ";
-        $query .= "WHERE SE11.D_E_L_E_T_ <> '*' AND E1_PREFIXO = 'R' AND E1_TIPO = 'NF' AND E1_FILIAL = '01' AND E1_SALDO = E1_VALOR AND E1_VENCREA >= " . date('Ymd') . " AND E1_NUMBCO !='' ";
+        $query .= "SELECT   'EMPRESA DE VIGILÂNCIA POTIGUAR'                                    AS EMPRESA          , "
+                . "         SE11.E1_NUMBCO                                                      AS NOSSONUMERO      , "
+                . "         SE11.E1_FILIAL                                                      AS FILIAL           , "
+                . "         SE11.E1_PREFIXO                                                     AS PREFIXO          , "
+                . "         SE11.E1_NUM                                                         AS NUMERO           , "
+                . "         SE11.E1_PARCELA                                                     AS PARCELA          , "
+                . "         SE11.E1_TIPO                                                        AS TIPO             , "
+                . "         SE11.E1_EMISSAO                                                     AS EMISSAO          , "
+                . "         SE11.E1_VALJUR                                                      AS JUROMORA         , "
+                . "         SE11.E1_VENCREA                                                     AS VENCIMENTO       , "
+                . "         ((SE11.E1_VALOR - SUM(ISNULL(SE1i.E1_VALOR,0))) - SE11.E1_ACRESC)   AS VALOR            , "
+                . "         SE11.E1_CLIENTE                                                     AS CLIENTE          , "
+                . "         A1_LOJA                                                             AS LOJACLIENTE      , "
+                . "         RTRIM(A1_NOME) + ' (' + A1_NREDUZ + ')'                             AS NOMECLIENTE      , "
+                . "         SE11.E1_SALDO                                                       AS SALDO            , "
+                . "         SE11.R_E_C_N_O_                                                     AS REG              , "
+                . "         A1_END                                                              AS ENDERECO_CLIENTE , "
+                . "         A1_MUN                                                              AS CIDADE_CLIENTE   , "
+                . "         A1_CEP                                                              AS CEP_CLIENTE      , "
+                . "         A1_EST                                                              AS ESTADO_CLIENTE   , "
+                . "         A1_CGC                                                              AS CGC              , "
+                . "         EE_AGENCIA                                                          AS AGENCIA          , "
+                . "         LTRIM(RTRIM(EE_CONTA))                                              AS CONTA              "
+                . "FROM                     SE1100 AS SE11 "
+                . "LEFT     OUTER   JOIN    SE1100 AS SE1i ON   SE1i.D_E_L_E_T_ =       ''              AND "
+                . "                                             SE11.E1_FILIAL  =       SE1i.E1_FILIAL  AND "
+                . "                                             SE11.E1_PREFIXO =       SE1i.E1_PREFIXO AND "
+                . "                                             SE11.E1_NUM     =       SE1i.E1_NUM     AND "
+                . "                                             SE11.E1_PARCELA =       SE1i.E1_PARCELA AND "
+                . "                                             SE1i.E1_TIPO    LIKE    '%-%'               "
+                . "INNER            JOIN    SA1100 AS SA1  ON   SA1.D_E_L_E_T_  =       ''              AND "
+                . "                                             SE11.E1_CLIENTE =       A1_COD          AND "
+                . "                                             SE11.E1_LOJA    =       A1_LOJA             "
+                . "INNER            JOIN    SEE100 AS SEE  ON   SEE.D_E_L_E_T_  =       ''              AND "
+                . "                                             EE_CODIGO       =       '341'           AND "
+                . "                                             EE_CARTEIR      =       '109'           AND "
+                . "                                             SE11.E1_FILIAL  =       EE_FILIAL           "
+                . "WHERE                                        SE11.D_E_L_E_T_ <>      '*'             AND "
+                . "                                             SE11.E1_PREFIXO =       'R'             AND "
+                . "                                             SE11.E1_TIPO    =       'NF'            AND "
+                . "                                             SE11.E1_FILIAL  =       '01'            AND "
+                . "                                             SE11.E1_SALDO   =       SE11.E1_VALOR   AND "
+                . "                                             SE11.E1_VENCREA >= " . date('Ymd') . "  AND "
+                . "                                             SE11.E1_NUMBCO  !=      ''                  ";
         
         if( $CGC != NULL )
         {
             $query .= " AND CGC = " . $CGC . " ";
         }
+        
+        $query .= "GROUP BY SE11.E1_NUMBCO                      , "
+                . "         SE11.E1_FILIAL                      , "
+                . "         SE11.E1_PREFIXO                     , "
+                . "         SE11.E1_NUM                         , "
+                . "         SE11.E1_PARCELA                     , "
+                . "         SE11.E1_TIPO                        , "
+                . "         SE11.E1_EMISSAO                     , "
+                . "         SE11.E1_VALJUR                      , "
+                . "         SE11.E1_VENCREA                     , "
+                . "         SE11.E1_CLIENTE                     , "
+                . "         A1_LOJA                             , "
+                . "         A1_NOME                             , "
+                . "         A1_NREDUZ                           , "
+                . "         SE11.E1_VALOR                       , "
+                . "         SE11.E1_SALDO                       , "
+                . "         SE11.E1_ACRESC                      , "
+                . "         SE11.R_E_C_N_O_                     , "
+                . "         A1_END                              , "
+                . "         A1_MUN                              , "
+                . "         A1_CEP                              , "
+                . "         A1_EST                              , "
+                . "         A1_CGC                              , "
+                . "         EE_AGENCIA                          , "
+                . "         EE_CONTA                              ";
 
         $query .= ") ";
         $query .= "AS SE1 ";
