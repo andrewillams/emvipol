@@ -4558,3 +4558,85 @@ Stack trace:
 REQUEST_URI=/boleto
 >>>>>>> 988abe98637c093ed062554f9222a9079c0a3c81
 ---
+2015/05/18 10:06:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/
+---
+2015/05/18 10:22:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/
+---
+2015/05/20 00:14:18 [error] [php] Undefined variable: ddag (/var/www/emvipol/includes/funcoes_itau.php:384)
+Stack trace:
+#0 /var/www/yii/framework/web/CBaseController.php(126): require()
+#1 /var/www/yii/framework/web/CBaseController.php(95): BoletoController->renderInternal()
+#2 /var/www/yii/framework/web/CController.php(869): BoletoController->renderFile()
+#3 /var/www/yii/framework/web/CController.php(782): BoletoController->renderPartial()
+#4 /var/www/emvipol/protected/controllers/BoletoController.php(115): BoletoController->render()
+#5 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionImprimir()
+#6 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#8 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#10 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#12 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#14 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#17 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emvipol/includes/funcoes_itau.php (384)
+in /var/www/emvipol/includes/funcoes_itau.php (57)
+in /var/www/emvipol/protected/views/boleto/imprimir.php (3)
+2015/05/20 00:15:21 [error] [php] Undefined variable: ddag (/var/www/emvipol/includes/funcoes_itau.php:384)
+Stack trace:
+#0 /var/www/yii/framework/web/CBaseController.php(126): require()
+#1 /var/www/yii/framework/web/CBaseController.php(95): BoletoController->renderInternal()
+#2 /var/www/yii/framework/web/CController.php(869): BoletoController->renderFile()
+#3 /var/www/yii/framework/web/CController.php(782): BoletoController->renderPartial()
+#4 /var/www/emvipol/protected/controllers/BoletoController.php(115): BoletoController->render()
+#5 /var/www/yii/framework/web/actions/CInlineAction.php(49): BoletoController->actionImprimir()
+#6 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#8 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#10 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#12 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#14 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#17 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emvipol/includes/funcoes_itau.php (384)
+in /var/www/emvipol/includes/funcoes_itau.php (57)
+in /var/www/emvipol/protected/views/boleto/imprimir.php (3)
+2015/05/20 00:20:46 [error] [php] Undefined index: vencimento (/var/www/emvipol/protected/controllers/BoletoController.php:54)
+Stack trace:
+#0 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#1 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#10 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/imprimir
+in /var/www/emvipol/protected/controllers/BoletoController.php (54)
+in /var/www/emvipol/index.php (13)

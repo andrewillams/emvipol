@@ -5,17 +5,12 @@ $codigo_banco_com_dv    = geraCodigoBanco($codigobanco)                     ;
 $nummoeda               = "9"                                               ;
 $fator_vencimento       = fator_vencimento($dadosboleto["data_vencimento"]) ;
 
-//valor tem 10 digitos, sem virgula
-$valor = formata_numero($dadosboleto["valor_boleto"], 10, 0, "valor");
-//agencia � 4 digitos
-$agencia = formata_numero($dadosboleto["agencia"], 4, 0);
-//conta � 5 digitos + 1 do dv
-$conta = formata_numero($dadosboleto["conta"], 5, 0);
-$conta_dv = formata_numero($dadosboleto["conta_dv"], 1, 0);
-//carteira 175
-$carteira = $dadosboleto["carteira"];
-//nosso_numero no maximo 8 digitos
-$nnum = formata_numero(trim($dadosboleto["nosso_numero"]), 8, 0);
+$valor      = formata_numero(           $dadosboleto["valor_boleto" ]       , 10    , 0 , "valor"   )   ; //valor tem 10 digitos, sem virgula
+$agencia    = formata_numero(           $dadosboleto["agencia"      ]       , 04    , 0             )   ; //agencia � 4 digitos
+$conta      = formata_numero(           $dadosboleto["conta"        ]       , 05    , 0             )   ; //conta � 5 digitos + 1 do dv
+$conta_dv   = formata_numero(           $dadosboleto["conta_dv"     ]       , 01    , 0             )   ;
+$carteira   =                           $dadosboleto["carteira"     ]                                   ; //carteira 175
+$nnum       = formata_numero(   trim(   $dadosboleto["nosso_numero" ]   )   , 08    , 0             )   ;//nosso_numero no maximo 8 digitos
 /*
 echo '$dadosboleto["nosso_numero"] <br>';
 var_dump($dadosboleto["nosso_numero"]);
@@ -79,19 +74,21 @@ function digitoVerificador_barra($numero) {
 }
 
 function formata_numero($numero, $loop, $insert, $tipo = "geral") {
+    
     if ($tipo == "geral") {
         $numero = str_replace(",", "", $numero);
         
-        if (strlen($numero) > $loop)
+/*        if (strlen($numero) > $loop)
         {
             $numero = substr($numero, (strlen($numero) - 8), 8);
-        } else {
+        } else {*/
             
             while (strlen($numero) < $loop) {
                 $numero = $insert . $numero;
             }
-        }
+//        }
     }
+    
     if ($tipo == "valor") {
         /*
           retira as virgulas
@@ -103,12 +100,15 @@ function formata_numero($numero, $loop, $insert, $tipo = "geral") {
             $numero = $insert . $numero;
         }
     }
+    
     if ($tipo == "convenio") {
         while (strlen($numero) < $loop) {
             $numero = $numero . $insert;
         }
     }
+    
     return $numero;
+    
 }
 
 function fbarcode($valor) {
@@ -315,17 +315,16 @@ function fbarcode($valor) {
 // Alterada por Glauber Portella para especifica��o do Ita�
     function monta_linha_digitavel($codigo) {
         
-        
 /*
  *                    1          2           3            4          5
  *      012 3 4 5678 9012345678 901 23456789 0 1234 56789 0 1234567890
  *       a  b c   d       e      f      g     h   i    j   k
  *      341 9 1 6455 0000021850 109 000666007 6 7123 11075 6 000 (errado)
- *      341 9 3 6455 0000021850 109 00666007 9 7123 11075 6 000  (certo )
+ *      341 9 3 6455 0000021850 109 00066600 7 7123 11075 6 000  (certo )
  * 
  *      34191.09008 06660.077121 31107.560000 3 64550000021850 (protheus)
- *      34191.09008 06660.076719 23110.756006 1 64550000021850 (errado  )
- *      34191.09008 66600.797121 31107.560000 3 64550000021850 (certo   )
+ *      34191.09008 06660.077121 31107.560000 3 64550000021850 (certo   )
+ *      34191.09008 06660.767124 31107.560000 1 64550000021850 (errado  )
  * 
  *  codBanco: 341           //a
     numMoeda: 9             //b
@@ -367,10 +366,11 @@ function fbarcode($valor) {
         // campo 5
         $fator      = substr($codigo, 5, 4);
         $valor      = substr($codigo, 9, 10);
-
+        
         $campo1 =   substr($banco       . $moeda    . $ccc   . $ddnnum . $dv1   , 0, 5) . '.' . 
                     substr($banco       . $moeda    . $ccc   . $ddnnum . $dv1   , 5, 5)         ;
         
+                         //066600           7          712
         $campo2 =   substr($resnnum     . $dac1     . $dddag . $dv2             , 0, 5) . '.' . 
                     substr($resnnum     . $dac1     . $dddag . $dv2             , 5, 6)         ;
         
