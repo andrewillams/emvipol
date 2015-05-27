@@ -4640,3 +4640,166 @@ Stack trace:
 REQUEST_URI=/boleto/imprimir
 in /var/www/emvipol/protected/controllers/BoletoController.php (54)
 in /var/www/emvipol/index.php (13)
+2015/05/23 13:06:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/
+---
+2015/05/27 00:12:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/
+---
+2015/05/27 12:38:53 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:38:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/boleto/
+---
+2015/05/27 12:39:04 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:39:37 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:41:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'O sistema não foi capaz de encontrar a ação "listarTitulos" solicitada.' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('listarTitulos')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('listarTitulos')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('boleto/listarTi...')
+#3 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /var/www/emvipol/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/boleto/listarTitulos
+---
+2015/05/27 12:42:19 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/index
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:43:25 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/index
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:43:29 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (42)
+in /var/www/emvipol/index.php (13)
+2015/05/27 12:43:30 [error] [php] Undefined variable: retJSON (/var/www/emvipol/protected/models/Boleto.php:222)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): BoletoController->runAction()
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): BoletoController->filterAccessControl()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): BoletoController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): BoletoController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /var/www/emvipol/index.php(13): CWebApplication->run()
+REQUEST_URI=/boleto/teste
+in /var/www/emvipol/protected/models/Boleto.php (222)
+in /var/www/emvipol/protected/controllers/BoletoController.php (51)
+in /var/www/emvipol/index.php (13)

@@ -16,7 +16,7 @@ class BoletoController extends Controller {
 
         return array(
             array('allow',
-                'actions' => array('index', 'listar', 'imprimir'),
+                'actions' => array('index', 'listar', 'imprimir', 'teste'),
                 'users' => array('*'),
             ),
         );
@@ -42,6 +42,13 @@ class BoletoController extends Controller {
         $retorno = $boleto->listarTitulos();
 
         $this->render('grid_boletos', array('dados' => $retorno));
+    }
+    
+    public function actionTeste()
+    {
+        $boleto = new Boleto;
+        
+        var_dump($boleto->listarTitulos());
     }
 
     public function actionImprimir() {

@@ -5,6 +5,8 @@ class Boleto extends CActiveRecord {
     public function listarTitulos() {
         
         $CGC    = NULL;
+        
+        $retJSON = [];
 
         # MS SQL Server and Sybase with PDO_DBLIB
         $db     = new PDO("dblib:host=187.60.78.18:1435;dbname=EMVIPOL", "acesso", "@ccess");
@@ -20,7 +22,8 @@ class Boleto extends CActiveRecord {
         $query  = "SELECT * FROM ( ";
         
         $query .= "SELECT   'NATAL TECNOLOGIA E SEGURANÇA LTDA'                                 AS EMPRESA          , "
-                . "         LEFT(SE12.E1_NUMBCO,8)                                              AS NOSSONUMERO      , "
+//                . "         LEFT(SE12.E1_NUMBCO,8)                                              AS NOSSONUMERO      , "
+                . "         LTRIM(RTRIM(SE12.E1_NUMBCO))                                        AS NOSSONUMERO      , "
                 . "         SE12.E1_FILIAL                                                      AS FILIAL           , "
                 . "         SE12.E1_PREFIXO                                                     AS PREFIXO          , "
                 . "         SE12.E1_NUM                                                         AS NUMERO           , "
@@ -28,7 +31,9 @@ class Boleto extends CActiveRecord {
                 . "         SE12.E1_TIPO                                                        AS TIPO             , "
                 . "         SE12.E1_EMISSAO                                                     AS EMISSAO          , "
                 . "         SE12.E1_VALJUR                                                      AS JUROMORA         , "
-                . "         SE12.E1_VENCREA                                                     AS VENCIMENTO       , "
+                . "         CASE                                                                                      "
+                . "             WHEN SE12.E1_DTULTNG <> ''  THEN SE12.E1_DTULTNG                                      "
+                . "                                         ELSE SE12.E1_VENCTO  END            AS VENCIMENTO       , "
                 . "         ((SE12.E1_VALOR - SUM(ISNULL(SE1i.E1_VALOR,0))) - SE12.E1_ACRESC)   AS VALOR            , "
                 . "         SE12.E1_CLIENTE                                                     AS CLIENTE          , "
                 . "         A1_LOJA                                                             AS LOJACLIENTE      , "
@@ -61,7 +66,6 @@ class Boleto extends CActiveRecord {
                 . "                                             SE12.E1_TIPO    =       'NF'            AND "
                 . "                                             SE12.E1_FILIAL  =       '01'            AND "
                 . "                                             SE12.E1_SALDO   =       SE12.E1_VALOR   AND "
-                . "                                             SE12.E1_VENCREA >= " . date('Ymd') . "  AND "
                 . "                                             SE12.E1_NUMBCO  !=      ''                  ";
         
         if( $CGC != NULL )
@@ -77,7 +81,8 @@ class Boleto extends CActiveRecord {
                 . "         SE12.E1_TIPO                        , "
                 . "         SE12.E1_EMISSAO                     , "
                 . "         SE12.E1_VALJUR                      , "
-                . "         SE12.E1_VENCREA                     , "
+                . "         SE12.E1_VENCTO                      , "
+                . "         SE12.E1_DTULTNG                     , "
                 . "         SE12.E1_CLIENTE                     , "
                 . "         A1_LOJA                             , "
                 . "         A1_NOME                             , "
@@ -105,7 +110,9 @@ class Boleto extends CActiveRecord {
                 . "         SE11.E1_TIPO                                                        AS TIPO             , "
                 . "         SE11.E1_EMISSAO                                                     AS EMISSAO          , "
                 . "         SE11.E1_VALJUR                                                      AS JUROMORA         , "
-                . "         SE11.E1_VENCREA                                                     AS VENCIMENTO       , "
+                . "         CASE                                                                                      "
+                . "             WHEN SE11.E1_DTULTNG <> ''  THEN SE11.E1_DTULTNG                                      "
+                . "                                         ELSE SE11.E1_VENCTO  END            AS VENCIMENTO       , "
                 . "         ((SE11.E1_VALOR - SUM(ISNULL(SE1i.E1_VALOR,0))) - SE11.E1_ACRESC)   AS VALOR            , "
                 . "         SE11.E1_CLIENTE                                                     AS CLIENTE          , "
                 . "         A1_LOJA                                                             AS LOJACLIENTE      , "
@@ -138,7 +145,6 @@ class Boleto extends CActiveRecord {
                 . "                                             SE11.E1_TIPO    =       'NF'            AND "
                 . "                                             SE11.E1_FILIAL  =       '01'            AND "
                 . "                                             SE11.E1_SALDO   =       SE11.E1_VALOR   AND "
-                . "                                             SE11.E1_VENCREA >= " . date('Ymd') . "  AND "
                 . "                                             SE11.E1_NUMBCO  !=      ''                  ";
         
         if( $CGC != NULL )
@@ -154,7 +160,8 @@ class Boleto extends CActiveRecord {
                 . "         SE11.E1_TIPO                        , "
                 . "         SE11.E1_EMISSAO                     , "
                 . "         SE11.E1_VALJUR                      , "
-                . "         SE11.E1_VENCREA                     , "
+                . "         SE11.E1_VENCTO                      , "
+                . "         SE11.E1_DTULTNG                     , "
                 . "         SE11.E1_CLIENTE                     , "
                 . "         A1_LOJA                             , "
                 . "         A1_NOME                             , "
@@ -171,8 +178,9 @@ class Boleto extends CActiveRecord {
                 . "         EE_AGENCIA                          , "
                 . "         EE_CONTA                              ";
 
-        $query .= ") ";
-        $query .= "AS SE1 ";
+        $query  .= ") "
+                .  "AS SE1 "
+                .  "WHERE VENCIMENTO  >= " . date('Ymd') . "  ";
         
         //$query .= "ORDER BY REG DESC ";
         

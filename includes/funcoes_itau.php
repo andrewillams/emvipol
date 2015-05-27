@@ -5,20 +5,14 @@ $codigo_banco_com_dv    = geraCodigoBanco($codigobanco)                     ;
 $nummoeda               = "9"                                               ;
 $fator_vencimento       = fator_vencimento($dadosboleto["data_vencimento"]) ;
 
-$valor      = formata_numero(           $dadosboleto["valor_boleto" ]       , 10    , 0 , "valor"   )   ; //valor tem 10 digitos, sem virgula
-$agencia    = formata_numero(           $dadosboleto["agencia"      ]       , 04    , 0             )   ; //agencia � 4 digitos
-$conta      = formata_numero(           $dadosboleto["conta"        ]       , 05    , 0             )   ; //conta � 5 digitos + 1 do dv
-$conta_dv   = formata_numero(           $dadosboleto["conta_dv"     ]       , 01    , 0             )   ;
-$carteira   =                           $dadosboleto["carteira"     ]                                   ; //carteira 175
-$nnum       = formata_numero(   trim(   $dadosboleto["nosso_numero" ]   )   , 08    , 0             )   ;//nosso_numero no maximo 8 digitos
-/*
-echo '$dadosboleto["nosso_numero"] <br>';
-var_dump($dadosboleto["nosso_numero"]);
-echo '<br><br>';
-echo '$nnum <br>';
-var_dump($nnum);
-echo '<br><br>';
+$valor      = formata_numero(               $dadosboleto["valor_boleto" ]           , 10    , 0 , "valor"   )   ; //valor tem 10 digitos, sem virgula
+$agencia    = formata_numero(               $dadosboleto["agencia"      ]           , 04    , 0             )   ; //agencia � 4 digitos
+$conta      = formata_numero(               $dadosboleto["conta"        ]           , 05    , 0             )   ; //conta � 5 digitos + 1 do dv
+$conta_dv   = formata_numero(               $dadosboleto["conta_dv"     ]           , 01    , 0             )   ;
+$carteira   =                               $dadosboleto["carteira"     ]                                   ; //carteira 175
+$nnum       = formata_numero( substr(trim(  $dadosboleto["nosso_numero" ]   ),0,8)  , 08    , 0             )   ;//nosso_numero no maximo 8 digitos
 
+/*
 $parteH = modulo_10($agencia . $conta . $carteira . $nnum);
 $parteK = modulo_10($agencia . $conta);
 
@@ -30,6 +24,7 @@ echo '<br><br>';*/
 
 $codigo_barras = $codigobanco . $nummoeda . $fator_vencimento . $valor . $carteira . $nnum . modulo_10($agencia . $conta . $carteira . $nnum) . $agencia . $conta . modulo_10($agencia . $conta) . '000';
 //$codigo_barras = $codigobanco . $nummoeda . $fator_vencimento . $valor . $carteira . $nnum . $parteH . $agencia . $conta . $parteK . '000';
+
 
 // 43 numeros para o calculo do digito verificador
 $dv = digitoVerificador_barra($codigo_barras);
@@ -196,6 +191,7 @@ function fbarcode($valor) {
 
     function fator_vencimento($data) {
         $data = explode("/", $data);
+        
         $ano = $data[2];
         $mes = $data[1];
         $dia = $data[0];
@@ -315,17 +311,8 @@ function fbarcode($valor) {
 // Alterada por Glauber Portella para especifica��o do Ita�
     function monta_linha_digitavel($codigo) {
         
+        
 /*
- *                    1          2           3            4          5
- *      012 3 4 5678 9012345678 901 23456789 0 1234 56789 0 1234567890
- *       a  b c   d       e      f      g     h   i    j   k
- *      341 9 1 6455 0000021850 109 000666007 6 7123 11075 6 000 (errado)
- *      341 9 3 6455 0000021850 109 00066600 7 7123 11075 6 000  (certo )
- * 
- *      34191.09008 06660.077121 31107.560000 3 64550000021850 (protheus)
- *      34191.09008 06660.077121 31107.560000 3 64550000021850 (certo   )
- *      34191.09008 06660.767124 31107.560000 1 64550000021850 (errado  )
- * 
  *  codBanco: 341           //a
     numMoeda: 9             //b
     digVerif: 1             //c
@@ -337,6 +324,39 @@ function fbarcode($valor) {
     Agencia : 7123          //i
     Conta   : 11075         //j
     Parte K : 6             //k
+ *                    1          2           3            4          5
+ *      012 3 4 5678 9012345678 901 23456789 0 1234 56789 0 1234567890
+ *       a  b c   d       e      f      g     h   i    j   k
+ *      341 9 1 6455 0000021850 109 000666007 6 7123 11075 6 000 (errado)
+ *      341 9 3 6455 0000021850 109 00066600 7 7123 11075 6 000  (certo )
+ * 
+ *      34191.09008 06660.077121 31107.560000 3 64550000021850 (protheus)
+ *      34191.09008 06660.077121 31107.560000 3 64550000021850 (certo   )
+ *      34191.09008 06660.767124 31107.560000 1 64550000021850 (errado  )
+ * 
+ * ===========================================================================================
+ * 
+ *  codBanco: 341           //a
+    numMoeda: 9             //b
+    digVerif: 9             //c
+    fatVenci: 6460          //d
+    Valor   : 0000014402    //e
+    Carteira: 109           //f
+    nossoNum: 00066686      //g
+    Parte H : 6             //h
+    Agencia : 7123          //i
+    Conta   : 11075         //j
+    Parte K : 6             //k
+ * 
+ *                    1          2           3            4          5
+ *      012 3 4 5678 9012345678 901 23456789 0 1234 56789 0 1234567890
+ *       a  b c   d       e      f      g    h   i    j   k
+ *      341 9 9 6460 0000014402 109 00066686 6 7123 11075 6 000
+ *      341 9   6458 0000014402 109 00066686 6 7123 11075 6 000
+ * 
+ *      34191.09008 06668.667121 31107.560000 8 64600000014402 (PROTHEUS)
+ *      34191.09008 06668.667121 31107.560000 9 64600000014402 (errado  )
+ * 0666866712
  **/
         
 //        echo 'codigo: ' . $codigo;
