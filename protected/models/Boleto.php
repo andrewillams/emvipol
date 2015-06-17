@@ -68,10 +68,6 @@ class Boleto extends CActiveRecord {
                     . "                                             SE12.E1_SALDO   =       SE12.E1_VALOR   AND "
                     . "                                             SE12.E1_NUMBCO  !=      ''                  ";
 
-            if ($CGC != NULL) {
-                $query .= " AND A1_CGC = " . $CGC . " ";
-            }
-
             $query .= "GROUP BY SE12.E1_NUMBCO                      , "
                     . "         SE12.E1_FILIAL                      , "
                     . "         SE12.E1_PREFIXO                     , "
@@ -146,11 +142,7 @@ class Boleto extends CActiveRecord {
                     . "                                             SE11.E1_FILIAL  =       '01'            AND "
                     . "                                             SE11.E1_SALDO   =       SE11.E1_VALOR   AND "
                     . "                                             SE11.E1_NUMBCO  !=      ''                  ";
-
-            if ($CGC != NULL) {
-                $query .= " AND CGC = " . $CGC . " ";
-            }
-
+            
             $query .= "GROUP BY SE11.E1_NUMBCO                      , "
                     . "         SE11.E1_FILIAL                      , "
                     . "         SE11.E1_PREFIXO                     , "
@@ -179,7 +171,7 @@ class Boleto extends CActiveRecord {
 
             $query .= ") "
                     . "AS SE1 "
-                    . "WHERE VENCIMENTO  >= " . date('Ymd') . "  ";
+                    . "WHERE VENCIMENTO  >= " . date('Ymd') . " AND CGC = '" . $CGC . "' ";
 
             //$query .= "ORDER BY REG DESC ";
 
