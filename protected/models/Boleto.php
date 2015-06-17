@@ -13,7 +13,7 @@ class Boleto extends CActiveRecord {
 
         if (isset($_POST['cgc'])) {
             
-            $CGC = trim($_POST['CGC']);
+            $CGC = trim($_POST['cgc']);
 
             //          $db = new PDO("dblib:host=10.0.254.8:1433;dbname=GMM;charset=utf8", "sa", "Grup0M@r3SA");
             //AAAAMMDD
