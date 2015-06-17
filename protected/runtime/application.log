@@ -4803,3 +4803,12 @@ REQUEST_URI=/boleto/teste
 in /var/www/emvipol/protected/models/Boleto.php (222)
 in /var/www/emvipol/protected/controllers/BoletoController.php (51)
 in /var/www/emvipol/index.php (13)
+2015/06/17 11:48:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/emvipol/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://emvipol/
+---
