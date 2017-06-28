@@ -4,12 +4,104 @@ class Boleto extends CActiveRecord {
 
     public function listarTitulos() {
 
+        $ipPorta = "187.60.78.18:1435";
+        $dbName = "EMVIPOL";
+        $usuario = "acesso";
+        $senha = "@Cess3mv";
+        
         $CGC = NULL;
 
         $retJSON = [];
+        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
 
         # MS SQL Server and Sybase with PDO_DBLIB
-        $db = new PDO("dblib:host=187.60.78.18:1435;dbname=EMVIPOL", "acesso", "@ccess");
+        $db = new PDO("dblib:host=$ipPorta;dbname=$dbName", $usuario, $senha);
 
         if (isset($_POST['cgc'])) {
             
